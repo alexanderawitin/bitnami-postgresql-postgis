@@ -9,5 +9,5 @@ In this repository, you'll find a Makefile to build a docker image. The Makefile
 For example, if you want to build an image named `bitnami-postgres-postgis:pg-10.6-postgis-2.5.1` that uses postgres 10 and 2.5.1 for postgis you should execute:
 
 ```bash
-make PGVERSION=10.6.0 TAG=bitnami-postgresql-postgis:pg-10.6-postgis-2.5.1
+make PGVERSION=10.6.0 POSTGIS_VERSION=2.5.1 TAG=bitnami-postgresql-postgis:pg-10.6-postgis-2.5.1
 ```
