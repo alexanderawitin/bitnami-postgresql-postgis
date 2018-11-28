@@ -12,13 +12,13 @@ RUN DEPS="wget build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev" 
     && export C_INCLUDE_PATH=/opt/bitnami/postgresql/include/:/opt/bitnami/common/include/ \
     && export LIBRARY_PATH=/opt/bitnami/postgresql/lib/:/opt/bitnami/common/lib/ \
     && export LD_LIBRARY_PATH=/opt/bitnami/postgresql/lib/:/opt/bitnami/common/lib/ \
-    && tar zxf postgis-${POSTGIS_VERSION}.tar.gz && cd postgis-${POSTGIS_VERSION} \
+    && tar zxf postgis-${POSTGIS_VERSION}.tar.gz && rm -f postgis-${POSTGIS_VERSION}.tar.gz \
+    && cd postgis-${POSTGIS_VERSION} \
     && ./configure --with-pgconfig=/opt/bitnami/postgresql/bin/pg_config \
     && make \
     && make install \
 	&& apt-get remove --purge --auto-remove -y $DEPS \
-	&& rm -rf /tmp/postgis-${POSTGIS_VERSION} \
-    && rm -f /tmp/postgis-${POSTGIS_VERSION}.tar.gz
+	&& rm -rf /tmp/postgis-${POSTGIS_VERSION}
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 COPY ./update-postgis.sh /usr/local/bin
 
