@@ -17,7 +17,8 @@ RUN DEPS="wget build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev" 
     && make \
     && make install \
 	&& apt-get remove --purge --auto-remove -y $DEPS \
-	&& rm -rf /tmp
+	&& rm -rf /tmp/postgis-${POSTGIS_VERSION} \
+    && rm -f /tmp/postgis-${POSTGIS_VERSION}.tar.gz
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 COPY ./update-postgis.sh /usr/local/bin
 
