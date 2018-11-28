@@ -1,0 +1,13 @@
+version: '1'
+
+services:
+  postgresql:
+    image: 'alexanderawitin/bitnami-postgresql-postgis:pg10.6-postgis-2.5.1-geos-3.5.1'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql_data:/bitnami'
+
+volumes:
+  postgresql_data:
+    driver: local
