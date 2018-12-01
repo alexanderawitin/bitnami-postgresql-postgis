@@ -4,9 +4,7 @@ LABEL maintainer "Alexander Awitin Jr <me@alexanderawitin.com>"
 USER 0
 
 # Install postgis postgresql extension
-RUN DEPS="wget build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev" \
-	&& apt-get update \
-	&& install_packages $DEPS \
+RUN install_packages wget build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev \
 	&& cd /tmp \
     && wget "https://download.osgeo.org/postgis/source/postgis-${POSTGIS_VERSION}.tar.gz" \
     && export C_INCLUDE_PATH=/opt/bitnami/postgresql/include/:/opt/bitnami/common/include/ \
@@ -17,8 +15,7 @@ RUN DEPS="wget build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev" 
     && ./configure --with-pgconfig=/opt/bitnami/postgresql/bin/pg_config \
     && make \
     && make install \
-	&& apt-get remove --purge --auto-remove -y $DEPS \
-	&& rm -rf /tmp/postgis-${POSTGIS_VERSION}
+	&& apt-get remove --purge --auto-remove -y wget build-essential
 COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 COPY ./update-postgis.sh /usr/local/bin
 
