@@ -1,8 +1,10 @@
 ifndef PGVERSION
-    $(error PGVERSION is undefined)
+    $(info PGVERSION is undefined, using default value ("10.6.0"). To view available versions, go to https://hub.docker.com/r/bitnami/postgresql/tags/.)
+	PGVERSION=10.6.0
 endif
 ifndef POSTGIS_VERSION
-    $(error POSTGIS_VERSION is undefined)
+    $(info POSTGIS_VERSION is undefined, using default value ("2.5.1").)
+	POSTGIS_VERSION=2.5.1
 endif
 ifndef TAG
     $(error TAG is undefined)

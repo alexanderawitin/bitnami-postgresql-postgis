@@ -4,10 +4,18 @@ A PostgreSQL Docker template based on Bitnami's PostgreSQL docker image with Pos
 
 ## Docker image
 
-In this repository, you'll find a Makefile to build a docker image. The Makefile generates the Dockerfile where you have to define the wanted Postgres version, PostGIS version, and image tag (`PGVERSION`, `POSTGIS_VERSION`, and `TAG` are madatory variables).
+In this repository, you'll find a Makefile to build a docker image. The Makefile generates the Dockerfile where you can optionally define the wanted Bitnami Postgres version, PostGIS version, and image tag (`TAG` is the only mandatory variable).
 
-For example, if you want to build an image named `bitnami-postgres-postgis:pg-10.6-postgis-2.5.1` that uses postgres 10 and 2.5.1 for postgis you should execute:
+#### Example
 
 ```bash
-make PGVERSION=10.6.0 POSTGIS_VERSION=2.5.1 TAG=bitnami-postgresql-postgis:pg-10.6-postgis-2.5.1
+make TAG=bitnami-postgresql-postgis:latest
 ```
+
+### Defaults
+
+|       Parameter        |                        Description                      | Default  |
+|------------------------|---------------------------------------------------------|----------|
+| `PGVERSION`            | Tag of `bitnami/postgresql` to be used as a base image. | `10.6.0` |
+| `POSTGIS_VERSION`      | Specific PostGIS version to install.                    | `2.5.1`  |
+| `TAG`                  | The tag for the built docker image (required).          | `{TAG}`  |
